@@ -9,55 +9,35 @@ void solve()
     cin>>n;
     string t;
     cin>>t;
-    ll sum1 = 0;
-    ll sum2 = 0;
-    int j;
+    vector<ll>cur;
+    vector<pair<ll,int>>rev;
+    ll cur_sum = 0;
     for(int i =0;i<n;i++)
     {
-        if(i<=(n/2))
+        if(t[i] == 'L')
         {
-            int temp = i;
-            for(j =0;j<=i;j++)
-            {
-                sum1+=n-temp-1;
-                temp++;
-            }
-            for(int k = j;k<n;k++)
-            {
-            char ch = t[i+1];
-            if(ch == 'L')
-            {
-                sum1+=i-0;
-            }
-            else{
-                sum1+=n-i-1;
-            }
-            }
+            cur.push_back(i);
+            rev.push_back({n-i-1,i});
         }
         else
         {
-            int temp = i;
-            for(j =0;j<=i;j++)
-            {
-                sum2+=temp-0;
-                temp--;
-            }
-            for(int k = j;k<n;k++)
-            {
-                char ch = t[i+1];
-                if(ch == 'L')
-                {
-                    sum2+=i-0;
-                }
-                else{
-                    sum2+=n-i-1;
-                }
-            }
+            cur.push_back(n-i-1);
+            rev.push_back({i,i});
         }
-        ll ans = max(sum1,sum2);
-        cout<<ans<<" ";
+        cur_sum+=cur.back();
+    }
+    sort(rev.rbegin(),rev.rend());
+    for(int i =0;i<n;i++)
+    {
+        int index = rev[i].second;
+        if(cur[index]<rev[i].first)
+        {
+            cur_sum = cur_sum- cur[index] +rev[i].first;
+        }
+        cout<<cur_sum<<" ";
     }
     cout<<"\n";
+
 }
 
 int main()
