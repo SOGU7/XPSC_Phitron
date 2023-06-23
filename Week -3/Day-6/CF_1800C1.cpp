@@ -5,27 +5,27 @@ using namespace std;
 
 void solve()
 {
-    int a,b,c,d;
-    cin>>a>>b>>c>>d;
-    bool ok = false;
-    for(int i = 0;i<4;i++)
+    ll n;
+    cin>>n;
+    vector<ll>a(n);
+    for(ll i =0;i<n;i++) cin>>a[i];
+    priority_queue<ll>pq;
+    ll ans = 0;
+    for(ll i =0;i<n;i++)
     {
-        if(a<b && a<c && b<d && c<d)
+        if(a[i] == 0 && pq.empty())
+            continue;
+        else if(a[i]>0)
         {
-            ok = true;
-            cout<<"YES\n";
-            break;
+            pq.push(a[i]);
         }
         else
         {
-            int temp = a;
-            a = c;
-            c = d;
-            d = b;
-            b = temp;
+            ans+=pq.top();
+            pq.pop();
         }
     }
-    if(!ok) cout<<"NO\n";
+    cout<<ans<<"\n";
 }
 
 int main()
