@@ -21,16 +21,26 @@ void solve()
     }
     int sum = 0;
     for(auto i : ans)
-    {
         sum+=i;
+    if(sum == m) cout<<"YES\n";
+    else if(sum>m) cout<<"NO\n";
+    else
+    {
+        bool ok = true;
+        while(sum<m)
+        {
+            mx++;
+            sum+=mx;
+            if(sum == m)
+            {
+                ok = false;
+                cout<<"YES\n";
+                break;
+            }
+        }
+        if(ok == true) cout<<"NO\n";
     }
-    if(sum == m)
-        cout<<"YES\n";
-    else if(m-sum<mx)
-        cout<<"NO\n";
-    else if(m-sum>mx)
-        cout<<"YES\n";
-    else cout<<"NO\n";
+    
 }
 
 int main()
