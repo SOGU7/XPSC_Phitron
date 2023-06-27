@@ -25,11 +25,7 @@ void solve()
     }
     for (int i = 0; i < k; i++)
     {
-        cout << ans[i];
-        if (i < k - 1)
-        {
-            cout << ' ';
-        }
+        cout << ans[i]<<" ";
     }
     cout <<"\n";
 }
