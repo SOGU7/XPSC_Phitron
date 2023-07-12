@@ -5,31 +5,42 @@ using namespace std;
 
 void solve()
 {
-    int m,n;
-    cin>>m;
+    int n;
+    cin>>n;
     map<int,int>mp;
-    for(int i = 1;i<=m;i++)
+    for(int i =1;i<=n;i++)
     {
-        cin>>n;
-        for(int j = 0;j<n;j++)
+        int m;
+        cin>>m;
+        for(int j =1;j<=m;j++)
         {
-            int a;
-            cin>>a;
-            mp[a] = i;
+            int x;
+            cin>>x;
+            mp[x] = i;
         }
     }
-    map<int,int>mp1;
-    for(auto i : mp)
+    vector<int>a(n+1,-1);
+    for(auto i :mp)
     {
-        mp1[i.second] = i.first;
+        if(a[i.second] == -1)
+        {
+            a[i.second] = i.first;
+        }
     }
-    if(mp1.size()<m) cout<<-1<<"\n";
+    bool flag = true;
+    for(int i =1;i<=n;i++)
+    {
+        if(a[i] == -1)
+        {
+            flag = false;
+            break;
+        }
+    }
+    if(!flag) cout<<-1<<"\n";
     else
     {
-        for(auto i : mp1)
-        {
-            cout<<i.second<<" ";
-        }
+        for(int i =1;i<=n;i++)
+            cout<<a[i]<<" ";
         cout<<"\n";
     }
 }
