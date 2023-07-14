@@ -5,9 +5,9 @@ using namespace std;
 
 void solve()
 {
-    int n,m,x;
-    cin>>n>>m>>x;
-    if((n+m+x)<2) cout<<"Water filling time\n";
+    int a,b,c;
+    cin>>a>>b>>c;
+    if((!(a&b))&(!(b&c))&(!(a&c))) cout<<"Water filling time\n";
     else cout<<"Not now\n";
 }
 
