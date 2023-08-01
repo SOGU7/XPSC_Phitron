@@ -5,7 +5,7 @@
 #define fastread() (ios_base::sync_with_stdio(0),cin.tie(0));
 using namespace __gnu_pbds;
 using namespace std;
-template <typename T> using pbds = tree<T, null_type, less_equal<T>, rb_tree_tag, tree_order_statistics_node_update>;
+template <typename T> using pbds = tree<T, null_type, less<T>, rb_tree_tag, tree_order_statistics_node_update>;
 const int mod = 1e9+7;
 
 void solve()
@@ -13,25 +13,21 @@ void solve()
     int n;
     cin>>n;
     vector<int>a(n);
+    for(int i =0;i<n;i++) cin>>a[i];
+    int count = 0;
     for(int i =0;i<n;i++)
     {
-        cin>>a[i];
-    }  
-    pbds<int>p;
-    ll ans = 0;
-    for(int i = 0;i<n;i++)
-    {
-         if(i == 0)
-            p.insert(a[i]);
-        else
-        {
-            ans+= p.size()-p.order_of_key(a[i]);
-            p.insert(a[i]);
-        }
-        
+        if(a[i] == i+1) count++;
     }
-    cout<<ans<<"\n";
-    
+    if(count&1)
+    {
+        int x = (count/2)+1;
+        cout<<x<<"\n";
+    }
+    else
+    {
+        cout<<(count/2)<<"\n";
+    }
     
 }
 

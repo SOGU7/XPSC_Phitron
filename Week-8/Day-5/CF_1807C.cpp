@@ -5,34 +5,33 @@
 #define fastread() (ios_base::sync_with_stdio(0),cin.tie(0));
 using namespace __gnu_pbds;
 using namespace std;
-template <typename T> using pbds = tree<T, null_type, less_equal<T>, rb_tree_tag, tree_order_statistics_node_update>;
+template <typename T> using pbds = tree<T, null_type, less<T>, rb_tree_tag, tree_order_statistics_node_update>;
 const int mod = 1e9+7;
 
 void solve()
 {
     int n;
     cin>>n;
-    vector<int>a(n);
-    for(int i =0;i<n;i++)
-    {
-        cin>>a[i];
-    }  
-    pbds<int>p;
-    ll ans = 0;
+    string t;
+    cin>>t;
+    vector<int>fr(26,-1);
     for(int i = 0;i<n;i++)
     {
-         if(i == 0)
-            p.insert(a[i]);
+        int now = t[i]-'a'; 
+        if(fr[now] == -1)
+        {
+            fr[now] = (i%2);
+        }
         else
         {
-            ans+= p.size()-p.order_of_key(a[i]);
-            p.insert(a[i]);
+            if(fr[now]!= (i%2))
+            {
+                cout<<"NO\n";
+                return;
+            }
         }
-        
     }
-    cout<<ans<<"\n";
-    
-    
+    cout<<"YES\n";
 }
 
 int main()
