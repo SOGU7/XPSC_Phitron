@@ -10,32 +10,26 @@ const int mod = 1e9+7;
 
 void solve()
 {
-    int n;
-    cin>>n;
-    string s;
-    cin>>s;
-    int x  = 0,y = 0;
-    int i = 0;
-    bool flag = true;
-    while(i<n)
+    int n,c;
+    cin>>n>>c;
+    vector<ll>a(n);
+    for(int i = 0;i<n;i++)
     {
-        if(s[i] == 'U')
-            x++;
-        else if(s[i] == 'D')
-            x--;
-        else if(s[i] == 'R')
-            y++;
-        else
-            y--;
-        if(x == 1 && y == 1)
-        {
-            cout<<"YES\n";
-            flag = false;
-            break;
-        }
-        i++;
+        int x;
+        cin>>x;
+        a[i] = x+i+1;
     }
-    if(flag) cout<<"NO\n";
+    sort(a.begin(),a.end());
+    int ans = 0;
+    for(int i =0;i<n;i++)
+    {
+        if(a[i]<=c)
+        {
+            ans++;
+            c-=a[i];
+        }
+    }
+    cout<<ans<<"\n";
     
 }
 

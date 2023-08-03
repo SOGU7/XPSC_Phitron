@@ -13,15 +13,21 @@ void solve()
     int n;
     cin>>n;
     vector<int>a(n);
-    for(int i =0;i<n;i++) cin>>a[i];
-    int sum1 = 0,sum2 =0;
+    ll sum = 0;
+    int count = 0;
     for(int i =0;i<n;i++)
     {
-        if(a[i]&1) sum2+=a[i];
-        else sum1+=a[i];
+        cin>>a[i];
+        if(a[i]<0)
+        {
+            count++;
+            a[i] = -a[i];
+        }
+        sum+=a[i];
     }
-    if(sum1>sum2) cout<<"YES\n";
-    else cout<<"NO\n";
+    sort(a.begin(),a.end());
+    if(count & 1) sum -= 2*a[0];
+    cout<<sum<<"\n";
     
 }
 

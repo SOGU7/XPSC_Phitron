@@ -12,26 +12,27 @@ void solve()
 {
     int n;
     cin>>n;
-    vector<ll>v(n);
-    for(int i =0;i<n;i++) cin>>v[i];
-    sort(v.begin(),v.end());
-    if(v[0]!=1)
+    string s;
+    cin>>s;
+    int fr1[26] = {0},fr2[26] = {0};
+    for(int i =0;i<n;i++)
     {
-        cout<<"NO\n";
-        return;
+        fr1[s[i]-'a']++;
     }
-    ll sum = v[0];
-    for(int i = 1;i<n;i++)
+    int ans = 0;
+    for(int i =0;i<n;i++)
     {
-        if(v[i]<=sum)
-            sum+=v[i];
-        else
+        fr1[s[i]-'a']--;
+        fr2[s[i]-'a']++;
+        int cur = 0;
+        for(int j =0;j<26;j++)
         {
-            cout<<"NO\n";
-            return;
+            cur+=min(1,fr1[j])+min(1,fr2[j]);
         }
+        ans = max(ans,cur);
     }
-    cout<<"YES\n";
+    cout<<ans<<"\n";
+    
     
 }
 
