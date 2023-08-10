@@ -13,39 +13,47 @@ void solve()
     string s;
     cin>>s;
     int n = s.size();
-    int rem = 0;
-    string ans;
-    for(int i = n-1;i>=0;i--)
+    if(s[0]>'4')
     {
-        int x = s[i]-'0';
-        if(x == 9)
-        {
-            continue;
-        }
-        x+=rem;
-        if(x<5)
-        {
-            ans+= to_string(x);
-            rem = 0;
-        }
-        else
-        {
-            ans+='0';
-            rem = 1;
-        }
+        cout<<1;
+        for(int i = 0;i<n;i++)
+            cout<<0;
+        cout<<"\n";
+        return;
     }
-    if(rem) ans+= to_string(rem);
-    reverse(ans.begin(),ans.end());
+    bool flag = true;
+    bool flag2 = true;
     for(int i = 0;i<n;i++)
     {
-        if(ans[i] == '9')
+        if(s[i]>'4')
         {
-            int x = ans[i-1]-'0';
-            x++;
-            ans[i-1] = to_string(x);
+            flag2 = false;
+            int c;
+            for(int j = i-1;j>=0;j--)
+            {
+                if(s[j]<='3')
+                {
+                    s[j]++;
+                    c = j;
+                    flag = false;
+                    for(int k = c+1;k<n;k++)
+                    s[k] = '0';
+                    break;
+                }
+            }
+            break;
         }
     }
-    
+    if((!flag && !flag2)|| flag2) 
+        cout<<s<<"\n";
+    else
+    {
+        cout<<1;
+        for(int i = 1;i<=n;i++)
+            cout<<0;
+        cout<<"\n";
+    }
+
 }
 
 int main()
