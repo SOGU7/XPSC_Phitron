@@ -10,12 +10,12 @@ const int mod = 1e9+7;
 
 void solve()
 {
-    int a,b,c;
+    ll a,b,c;
     cin>>a>>b>>c;
-    int sum = a+(2*b)+(3*c);
-    int ans = sum%2;
+    ll sum = a+(2*b)+(3*c);
+    ll ans = sum%2;
     cout<<ans<<"\n";
-    
+
 }
 
 int main()
@@ -27,6 +27,6 @@ int main()
     {
        solve();
     }
-     
+
     return 0;
 }
