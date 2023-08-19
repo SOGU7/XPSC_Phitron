@@ -7,40 +7,34 @@ using namespace __gnu_pbds;
 using namespace std;
 template <typename T> using pbds = tree<T, null_type, less<T>, rb_tree_tag, tree_order_statistics_node_update>;
 const int mod = 1e9+7;
-
+ 
 void solve()
 {
     int n;
     cin>>n;
-    vector<pair<int,int>>a(n+1);
-    for(int i =1;i<=n;i++)
+    vector<bool>visited(n,false);
+    for(int i = 1;i<=n;i++)
     {
-        cin>>a[i].first;
-        a[i].second = i;
-    }
-    sort(a.begin()+1,a.end()+1);
-    reverse(a.begin()+1,a.end()+1);
-    vector<int>ans(n+3,0);
-    int count = 0;
-    int dis = 1;
-    for(int i =1;i<=n;i+=2)
-    {
-        ans[a[i].second] = dis;
-        if(i<n)
+        if(i == 1)
         {
-            ans[a[i+1].second] = -1*dis;
+            cout<<i<<" ";
+            visited[i] = true;
+            continue;
         }
-        count+= 2*(dis*(a[i].first));
-        if(i<n)
-            count+=2*(dis*(a[i+1].first));
-        dis++;
+        if(!visited[i])
+        {
+            cout<<i<<" ";
+            for(int j = i*2;j<=n;j*=2)
+            {
+                cout<<j<<" ";
+                visited[j] = true;
+            }
+        }
     }
-    cout<<count<<"\n";
-    for(int i =0;i<=n;i++)
-        cout<<ans[i]<<" ";
     cout<<"\n";
+    
 }
-
+ 
 int main()
 {
     fastread();

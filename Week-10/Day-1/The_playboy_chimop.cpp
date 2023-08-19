@@ -8,26 +8,39 @@ using namespace std;
 template <typename T> using pbds = tree<T, null_type, less<T>, rb_tree_tag, tree_order_statistics_node_update>;
 const int mod = 1e9+7;
 
-void solve(int n, int q)
+void solve()
 {
+    int n;
+    cin>>n;
     vector<int>a(n);
     for(int i =0;i<n;i++) cin>>a[i];
-    sort(a.begin(),a.end());
+    int q;
+    cin>>q;
     while(q--)
     {
         int x;
         cin>>x;
+        auto it1 = upper_bound(a.begin(),a.end(),x);
         auto it = lower_bound(a.begin(),a.end(),x);
-        int idx = it - a.begin();
-        if(idx == n)
+        int idx = it-a.begin();
+        int idx1 = it1-a.begin();
+        if(idx == 0)
         {
-            cout<<x<<" not found\n";
-            continue;
+            cout<<"X ";
         }
-        if(a[idx] == x)
-            cout<<x<<" found at "<<idx+1<<"\n";
         else
-            cout<<x<<" not found\n";
+        {
+            cout<<a[idx-1]<<" ";
+        }
+        if(idx1 == n)
+        {
+            cout<<"X\n";
+        }
+        else
+        {
+            cout<<a[idx1]<<"\n";
+        }
+        
     }
     
 }
@@ -35,14 +48,10 @@ void solve(int n, int q)
 int main()
 {
     fastread();
-    int n,q;
-    int cs = 1;
-    while(cin>>n>>q)
+    int t = 1;
+    while(t--)
     {
-       if(n == 0 && q == 0) break;
-       cout<<"CASE# "<<cs<<":\n";
-       solve(n,q);
-       cs++;
+       solve();
     }
      
     return 0;
