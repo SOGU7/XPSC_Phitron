@@ -10,24 +10,11 @@ const int mod = 1e9+7;
 
 void solve()
 {
-    ll a,b;
-    cin>>a>>b;
-    ll count = 1e18;
-    ll ans;
-    for(ll i = 0;i*i<=a;i++)
-    {
-        if(b == 1 && i == 0) continue;
-        ll c = a;
-        ans = i;
-        while(c)
-        {
-            c/=(b+i);
-            ans++;
-        }
-        count = min(count,ans);
-    }
-    cout<<count<<"\n";
-    
+    ll n,k;
+    cin>>n>>k;
+    k*=((n+k-1)/k);
+    cout<<((n+k-1)/n)<<"\n";
+      
 }
 
 int main()
