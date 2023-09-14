@@ -1,31 +1,23 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
+#define ll long long 
 using namespace std;
 int main()
 {
-    int n;
-    cin>>n;
-    vector<int>a(n);
-    for(int i = 0;i<n;i++) cin>>a[i];
-    int i = 0,j = 0;
-    set<int>s;
-    int ans = -1;
-    while(j<n)
+    ll n;
+    cin >> n;
+    ll a[n];
+    for (ll i = 0; i < n; ++i)
     {
-        s.insert(a[j]);
-        if(s.size()<(j-i+1))
-        {
-            int sz = s.size();
-            ans = max(ans,sz);
-            s.clear();
-            i = j;
-            j++;
-            continue;
-        }
-        j++;
+        cin >> a[i];
     }
-    j--;
-    ans = max(ans,(j-i+1));
-    cout<<ans;
-
+    map<ll, ll> mp;
+    ll ans = 0;
+    for (ll i = 0, j = 0; i < n; ++i)
+    {
+        j = max(mp[a[i]], j);
+        ans = max(ans, i - j + 1);
+        mp[a[i]] = i + 1;
+    }
+    cout << ans << "\n";
     return 0;
 }
